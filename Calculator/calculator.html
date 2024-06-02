@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Calculator</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      text-align: center;
+      background-color: #160202;
+    }
+
+    .calculator {
+      max-width: 300px;
+      margin: 0 auto;
+      text-align: center;
+      padding: 20px;
+      border: 1px solid #e04d4d;
+      border: 2px solid #720d06;
+      border-radius: 7px;
+      box-shadow: 0 0 10px #ddd30a;
+    }
+
+    .input-field {
+      width: 100%;
+      font-size: 20px;
+      padding: 5px 0px;
+      margin-bottom: 10px;
+      border: 1px solid #241502;
+      border-radius: 3px;
+      text-align: right;
+    }
+
+    .calculator-buttons {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 6px;
+      margin-top: 10px;
+    }
+
+    button {
+      font-size: 20px;
+      padding: 12px;
+      background-color: #dfc7c7;
+      border: 1px solid #d6230b;
+      border-radius: 3px;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background-color: #ddd30a;
+    }
+
+    h1 {
+      text-align: center;
+      margin-top: 80px;
+      font-size: 36px;
+      color: #007BFF;
+      animation-name: fadeInOut;
+      animation-duration: 2s;
+      animation-timing-function: ease-in-out;
+      animation-iteration-count: infinite;
+    }
+
+
+    @keyframes fadeInOut {
+
+      0%,
+      100% {
+        opacity: 1;
+      }
+
+      50% {
+        opacity: 0.5;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <h1 style="text-align: center; color: #d4af1b;">CALCULATOR</h1>
+  <div class="calculator">
+    <input style="background-color: #916464;" type="text" class="input-field" id="result" disabled>
+    <div class="calculator-buttons">
+      <button style="color: red; background: #000;" onclick="clearResult()">C</button>
+      <button style="color: #000; background-color: #d45353;" onclick="deleteCharacter()">&#9003;</button>
+      <button onclick="appendToResult('0')">0</button>
+      <button onclick="appendToResult('/')">/</button>
+      <button onclick="appendToResult('1')">1</button>
+      <button onclick="appendToResult('2')">2</button>
+      <button onclick="appendToResult('3')">3</button>
+      <button onclick="appendToResult('*')">*</button>
+      <button onclick="appendToResult('4')">4</button>
+      <button onclick="appendToResult('5')">5</button>
+      <button onclick="appendToResult('6')">6</button>
+      <button onclick="appendToResult('-')">-</button>
+      <button onclick="appendToResult('7')">7</button>
+      <button onclick="appendToResult('8')">8</button>
+      <button onclick="appendToResult('9')">9</button>
+      <button onclick="appendToResult('+')">+</button>
+      <button onclick="appendToResult('.')">.</button>
+      <button onclick="calculateResult()">=</button>
+    </div>
+  </div>
+
+  <script>
+    function appendToResult(value) {
+      document.getElementById('result').value += value;
+    }
+
+    function clearResult() {
+      document.getElementById('result').value = '';
+    }
+
+    function deleteCharacter() {
+      const currentResult = document.getElementById('result').value;
+      document.getElementById('result').value = currentResult.slice(0, -1);
+    }
+
+    function calculateResult() {
+      const currentResult = document.getElementById('result').value;
+      try {
+        const result = eval(currentResult);
+        document.getElementById('result').value = result;
+      } catch (error) {
+        document.getElementById('result').value = 'Error';
+      }
+    }
+  </script>
+</body>
+
+</html>
